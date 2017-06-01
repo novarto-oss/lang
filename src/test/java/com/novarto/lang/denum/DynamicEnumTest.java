@@ -1,4 +1,4 @@
-package com.novarto.cletty.lang.denum;
+package com.novarto.lang.denum;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -45,7 +45,7 @@ public class DynamicEnumTest
     public void notResolved() throws ClassNotFoundException
     {
         Class<DynamicEnum> type = (Class<DynamicEnum>) DynamicEnumTest.class.getClassLoader()
-                .loadClass("com.novarto.cletty.lang.denum.DynamicEnumTest$Whatever2");
+                .loadClass("com.novarto.lang.denum.DynamicEnumTest$Whatever2");
 
         DynamicEnumFactory<?> factory = DynamicEnumFactory.unsafeFindFactory(type);
         assertNotNull(factory);

@@ -1,6 +1,6 @@
-package com.novarto.cletty.lang.denum;
+package com.novarto.lang.denum;
 
-import com.novarto.cletty.lang.Collections;
+import com.novarto.lang.Collections;
 import fj.F0;
 import fj.data.List;
 import fj.data.Set;
@@ -9,7 +9,7 @@ import java.lang.reflect.Array;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.novarto.cletty.lang.Collections.duplicates;
+import static com.novarto.lang.Collections.duplicates;
 import static java.text.MessageFormat.format;
 
 /**

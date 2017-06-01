@@ -1,4 +1,4 @@
-package com.novarto.cletty.lang.testutil;
+package com.novarto.lang.testutil;
 
 import fj.F0;
 import fj.Try;
@@ -10,8 +10,7 @@ import java.net.ServerSocket;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A set of utilities useful for testing. Right now they reside in the core jar as they have no dependency on
- * testing frameworks and are small in size.
+ * A set of utilities useful for testing.
  */
 public class TestUtil
 {

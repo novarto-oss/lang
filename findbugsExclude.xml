@@ -1,0 +1,7 @@
+<FindBugsFilter>
+    <Match>
+        <Class name="com.novarto.lang.denum.DynamicEnumFactory" />
+        <Method name="values" />
+        <Bug pattern="EI_EXPOSE_REP" />
+    </Match>
+</FindBugsFilter>

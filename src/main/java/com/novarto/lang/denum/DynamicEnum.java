@@ -1,4 +1,4 @@
-package com.novarto.cletty.lang.denum;
+package com.novarto.lang.denum;
 
 /**
  * An enumeration-like type whose values are not known on compile-time; for example they are specified in a

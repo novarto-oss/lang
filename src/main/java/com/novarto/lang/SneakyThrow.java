@@ -1,4 +1,4 @@
-package com.novarto.cletty.lang;
+package com.novarto.lang;
 
 public final class SneakyThrow
 {

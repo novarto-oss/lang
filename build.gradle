@@ -1,3 +1,6 @@
+group 'com.novarto'
+version '0.9-SNAPSHOT'
+
 buildscript {
     repositories {
         mavenCentral()
@@ -12,6 +15,20 @@ buildscript {
 
 
 apply plugin: 'com.novarto.javaconventions'
+
+javaconventions {
+    ci = System.getProperty("ci")!=null
+}
+
+afterEvaluate {
+    if(javaconventions.ci) {
+        findbugs {
+            excludeFilter = file("$rootProject.projectDir/findbugsExclude.xml")
+        }
+    }
+
+}
+
 
 
 dependencies {
