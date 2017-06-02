@@ -2,14 +2,18 @@ package com.novarto.lang;
 
 import fj.Ord;
 import fj.data.Set;
+import fj.data.Stream;
 import org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
 
-import static fj.data.List.list;
+import static fj.data.List.*;
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -50,6 +54,30 @@ public class CollectionsTest
         assertThat(map.get(1), is(new Bean(1, "pesho")));
         assertThat(map.get(2), is(new Bean(2, "gosho")));
     }
+
+    @Test
+    public void toList()
+    {
+        fj.data.List<Integer> fjList = arrayList(1, 2, 3);
+
+        assertThat(Collections.toList(fjList), is(sameInstance(fjList)));
+        assertThat(Collections.toList(nil()), is(sameInstance(nil())));
+
+        assertThat(Collections.toList(asList(1, 2, 3)), is(arrayList(1, 2, 3)));
+    }
+
+    @Test
+    public void size()
+    {
+        assertThat(Collections.size(nil()), is(0));
+        assertThat(Collections.size(emptyList()), is(0));
+        assertThat(Collections.size(singletonList(5)), is(1));
+        assertThat(Collections.size(arrayList(5, 6, 7)), is(3));
+
+        assertThat(Collections.size(Stream.range(0, 5)), is(5));
+
+    }
+
 
     private static final class Bean
     {
