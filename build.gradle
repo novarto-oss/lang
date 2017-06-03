@@ -30,10 +30,6 @@ subprojects {
         ci = System.getProperty("ci")!=null
     }
 
-    repositories {
-        mavenLocal()
-    }
-
     dependencies {
         testCompile 'org.hamcrest:hamcrest-all:1.3'
         testCompile 'junit:junit:4.12'
