@@ -16,9 +16,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
 
-/**
- * Created by fmap on 06.07.16.
- */
+
 public class CollectionsTest
 {
     @Test @SuppressWarnings("deprecation")

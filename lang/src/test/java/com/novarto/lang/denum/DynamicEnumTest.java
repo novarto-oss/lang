@@ -6,9 +6,6 @@ import org.junit.Test;
 import static fj.data.List.list;
 import static org.junit.Assert.assertNotNull;
 
-/**
- * Created by fmap on 23.06.16.
- */
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class DynamicEnumTest

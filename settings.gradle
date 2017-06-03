@@ -1,2 +1,4 @@
 rootProject.name = 'lang-parent'
 include 'lang'
+include 'lang-guava'
+

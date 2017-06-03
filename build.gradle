@@ -34,4 +34,10 @@ subprojects {
         mavenLocal()
     }
 
+    dependencies {
+        testCompile 'org.hamcrest:hamcrest-all:1.3'
+        testCompile 'junit:junit:4.12'
+        testCompile "org.functionaljava:functionaljava-quickcheck:4.7"
+    }
+
 }

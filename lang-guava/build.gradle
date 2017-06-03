@@ -1,0 +1,6 @@
+dependencies {
+    compile 'com.google.guava:guava:22.0'
+    compile project(':lang')
+}
+
+
