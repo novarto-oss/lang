@@ -1,0 +1,18 @@
+afterEvaluate {
+    if(javaconventions.ci) {
+        findbugs {
+            excludeFilter = file("$project.projectDir/findbugsExclude.xml")
+        }
+    }
+
+}
+
+dependencies {
+	def fjVersion = '4.7'
+
+    compile "org.functionaljava:functionaljava_1.8:$fjVersion"
+
+    testCompile 'org.hamcrest:hamcrest-all:1.3'
+    testCompile 'junit:junit:4.12'
+    testCompile "org.functionaljava:functionaljava-quickcheck:$fjVersion"
+}

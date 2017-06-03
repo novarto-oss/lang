@@ -1,6 +1,12 @@
 group 'com.novarto'
 version '0.9-SNAPSHOT'
 
+repositories {
+    mavenCentral()
+    jcenter()
+    mavenLocal()
+}
+
 buildscript {
     repositories {
         mavenCentral()
@@ -13,30 +19,19 @@ buildscript {
     }
 }
 
+subprojects {
 
-apply plugin: 'com.novarto.javaconventions'
+    apply plugin: 'com.novarto.javaconventions'
 
-javaconventions {
-    ci = System.getProperty("ci")!=null
-}
+    group project.rootProject.group
+    version project.rootProject.version
 
-afterEvaluate {
-    if(javaconventions.ci) {
-        findbugs {
-            excludeFilter = file("$rootProject.projectDir/findbugsExclude.xml")
-        }
+    javaconventions {
+        ci = System.getProperty("ci")!=null
     }
 
-}
+    repositories {
+        mavenLocal()
+    }
 
-
-
-dependencies {
-	def fjVersion = '4.7'
-
-    compile "org.functionaljava:functionaljava_1.8:$fjVersion"
-
-    testCompile 'org.hamcrest:hamcrest-all:1.3'
-    testCompile 'junit:junit:4.12'
-    testCompile "org.functionaljava:functionaljava-quickcheck:$fjVersion"
 }

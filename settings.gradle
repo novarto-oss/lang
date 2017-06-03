@@ -1,2 +1,2 @@
-rootProject.name = 'lang'
-
+rootProject.name = 'lang-parent'
+include 'lang'
