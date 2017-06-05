@@ -1,5 +1,5 @@
 group 'com.novarto'
-version '0.9-SNAPSHOT'
+version '0.9'
 
 repositories {
     mavenCentral()
@@ -15,16 +15,16 @@ buildscript {
     }
     dependencies {
         classpath group: 'com.novarto', name: 'java-conventions',
-                version: '0.9-SNAPSHOT'
+                version: '0.9'
     }
 }
 
 subprojects {
 
-    apply plugin: 'com.novarto.javaconventions'
-
     group project.rootProject.group
     version project.rootProject.version
+
+    apply plugin: 'com.novarto.javaconventions'
 
     javaconventions {
         ci = System.getProperty("ci")!=null
@@ -34,6 +34,15 @@ subprojects {
         testCompile 'org.hamcrest:hamcrest-all:1.3'
         testCompile 'junit:junit:4.12'
         testCompile "org.functionaljava:functionaljava-quickcheck:4.7"
+    }
+
+    bintray {
+        pkg {
+            name = 'lang'
+            vcsUrl = 'https://github.com/novarto-oss/lang.git'
+
+        }
+
     }
 
 }
