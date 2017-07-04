@@ -23,7 +23,7 @@ public class ConcurrentUtil
         Runtime.getRuntime().addShutdownHook(shutdownHook);
     }
 
-    private static boolean shutdownAndAwaitTermination(ExecutorService service, long timeout, TimeUnit unit)
+    public static boolean shutdownAndAwaitTermination(ExecutorService service, long timeout, TimeUnit unit)
     {
         long halfTimeoutNanos = unit.toNanos(timeout) / 2;
         // Disable new tasks from being submitted
