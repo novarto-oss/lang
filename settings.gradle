@@ -1,4 +1,5 @@
 rootProject.name = 'lang-parent'
 include 'lang'
 include 'lang-guava'
+include 'jackson-datatype-lang'
 
