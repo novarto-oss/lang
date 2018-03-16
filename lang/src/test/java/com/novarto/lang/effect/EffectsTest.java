@@ -6,8 +6,9 @@ import fj.Try;
 import fj.data.Validation;
 import org.junit.Test;
 
-import static com.novarto.lang.effect.Effects.bind;
-import static com.novarto.lang.effect.Effects.map;
+import static com.novarto.lang.effect.Effects.*;
+import static fj.data.Validation.fail;
+import static fj.data.Validation.success;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -31,7 +32,19 @@ public class EffectsTest
 
         assertThat(result.f().isFail(), is(true));
 
+        result = pure(2);
+        assertThat(result.f(), is(success(2)));
 
+        result = pure(() -> 2);
+        assertThat(result.f(), is(success(2)));
+
+
+        RuntimeException rte = new RuntimeException();
+        result = error(rte);
+        assertThat(result.f(), is(fail(rte)));
+
+        result = error(() -> rte);
+        assertThat(result.f(), is(fail(rte)));
 
     }
 
