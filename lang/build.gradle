@@ -10,5 +10,7 @@ afterEvaluate {
 dependencies {
 
     compile 'org.functionaljava:functionaljava_1.8:4.7'
+    compile 'org.functionaljava:functionaljava-quickcheck:4.7'
+
 
 }

@@ -1,9 +1,6 @@
 package com.novarto.lang.effect;
 
-import fj.F;
-import fj.F0;
-import fj.P1;
-import fj.Try;
+import fj.*;
 import fj.data.Validation;
 import fj.function.Try0;
 
@@ -109,5 +106,24 @@ public final class LazyEffect<E, A>
     {
         return p.f();
     }
+
+    /**
+     * An Equal instance for LazyEffect
+     */
+    public static <E, A> Equal<LazyEffect<E, A>> equal(Equal<A> aEq, Equal<E> eEq)
+    {
+        Equal<P1<Validation<E, A>>> pEq = Equal.p1Equal(Equal.validationEqual(eEq, aEq));
+        return pEq.contramap(x -> x.p);
+    }
+
+    /**
+     * A hash intance for lazyEffect
+     */
+    public static <E, A> Hash<LazyEffect<E, A>> equal(Hash<A> aHash, Hash<E> eHash)
+    {
+        Hash<P1<Validation<E, A>>> pHash = Hash.p1Hash(Hash.validationHash(eHash, aHash));
+        return pHash.contramap(x -> x.p);
+    }
+
 
 }
