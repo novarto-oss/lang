@@ -22,7 +22,13 @@ import static fj.data.Validation.success;
  *
  * A pure value can be lifted to a LazyEffect via pure() and error()
  *
- * LazyEffect is isomorphic to a P1[Validation[E, A]], and uses P1[Validation[E, A]] as an internal representation.
+ * LazyEffect is isomorphic to a P1[Validation[E, A]], and uses P1[Validation[E, A]] as an underlying representation.
+ *
+ * You can obtain a lazy effect's underlying representation via {@link LazyEffect#p}.
+ * You can construct a lazy effect from a P1 via {@link LazyEffect#fromP1(P1)}.
+ *
+ * This isomorphism allows to cache the side effect of a lazy effect, by taking a lazy effect's underlying P1,
+ * calling one of its memo() methods, and constructing a new lazy effect with the memoized P1.
  *
  *
  * @param <E> the error type
@@ -31,7 +37,7 @@ import static fj.data.Validation.success;
 public final class LazyEffect<E, A>
 {
 
-    private final P1<Validation<E, A>> p;
+    public final P1<Validation<E, A>> p;
 
     private LazyEffect(P1<Validation<E, A>> p)
     {
@@ -76,6 +82,14 @@ public final class LazyEffect<E, A>
     public static <E extends Exception, A> LazyEffect<E, A> effect(Try0<A, E> effect)
     {
         return new LazyEffect<>(Try.f(effect));
+    }
+
+    /**
+     * Constructs a LazyEffect from its underlying representation, P1<Validation<E, A>>
+     */
+    public static <E, A> LazyEffect<E, A> fromP1(P1<Validation<E, A>> p)
+    {
+        return new LazyEffect<>(p);
     }
 
 
