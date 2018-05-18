@@ -2,6 +2,8 @@ package com.novarto.lang.effect;
 
 import fj.Equal;
 import fj.F;
+import fj.P1;
+import fj.data.Validation;
 import fj.test.Arbitrary;
 import fj.test.Cogen;
 import fj.test.Gen;
@@ -12,9 +14,7 @@ import org.junit.runner.RunWith;
 import static com.novarto.lang.effect.LazyEffect.error;
 import static com.novarto.lang.effect.LazyEffect.pure;
 import static fj.Equal.stringEqual;
-import static fj.test.Arbitrary.arbBoolean;
-import static fj.test.Arbitrary.arbInteger;
-import static fj.test.Arbitrary.arbString;
+import static fj.test.Arbitrary.*;
 import static fj.test.Cogen.cogenInteger;
 import static fj.test.Property.prop;
 import static fj.test.Property.property;
@@ -23,7 +23,7 @@ import static fj.test.Property.property;
 public class LazyEffectHasMonadTest
 {
 
-    static final Equal<LazyEffect<String, Integer>> EQ = LazyEffect.equal(Equal.intEqual, stringEqual);
+    static final Equal<LazyEffect<String, Integer>> EQ = leEqual(Equal.intEqual, stringEqual);
 
     public Property leftIdentity()
     {
@@ -84,5 +84,12 @@ public class LazyEffectHasMonadTest
     {
         return gen.map(x -> error(x));
     }
+
+    private static <E, A> Equal<LazyEffect<E, A>> leEqual(Equal<A> aEq, Equal<E> eEq)
+    {
+        Equal<P1<Validation<E, A>>> pEq = Equal.p1Equal(Equal.validationEqual(eEq, aEq));
+        return pEq.contramap(x -> x.p);
+    }
+
 
 }
